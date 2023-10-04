@@ -8,6 +8,21 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+/* Define custom scrollbar width */
+::-webkit-scrollbar {
+  width: 2px; /* Adjust to make it thinner or thicker */
+}
+
+/* Define custom scrollbar track color */
+::-webkit-scrollbar-track {
+  background: transparent; /* Change to your preferred background color */
+}
+
+/* Define custom scrollbar thumb color */
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Change to your preferred thumb color */
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

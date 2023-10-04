@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import Login from './login';
 
 function Home() {
   const [inputValue, setInputValue] = useState('');
@@ -29,27 +30,9 @@ function Home() {
   }
 
   return (
-    <div className='bg-gray-500 flex justify-center w-full h-screen items-center'>
-      <div className='flex justify-center flex-col items-center space-y-2'>
-        <div>
-          <Input
-            placeholder='Enter your username...'
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-        </div>
-        <div>
-          <Button
-            colorScheme='teal'
-            variant='solid'
-            onClick={handleSend}
-            className='cursor-pointer'
-          >
-            Send
-          </Button>
-        </div>
-      </div>
-    </div >
+    <div>
+      <Login />
+    </div>
   )
 }
 
