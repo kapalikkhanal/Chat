@@ -1,13 +1,21 @@
 const express = require('express');
+const app = express();
+const cors = require('cors')
 const http = require('http');
 const socketIo = require('socket.io');
-const cors = require('cors')
+require('dotenv').config() //This should always above the port.
 
-const app = express();
+app.use(express.json())
+app.use(cors())
 
-app.use(cors({
-    origin: '*'
-}));
+const connect = require('./db/connect')
+const userRoute = require('./routes/user')
+
+connect() //Connecting to Database
+
+const PORT = process.env.DEV_PORT || 3001;
+
+app.use(userRoute)
 
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -17,7 +25,7 @@ const io = socketIo(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log('New user connected');
+    // console.log('New user connected');
 
     socket.on('sendMessage', (message) => {
         io.emit('message', message); // Broadcast the message to all connected clients
@@ -27,8 +35,6 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
-
-const PORT = process.env.DEV_PORT || 3001;
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

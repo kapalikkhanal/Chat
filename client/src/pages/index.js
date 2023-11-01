@@ -24,8 +24,8 @@ function Home() {
     router.push('/chatBox')
   };
 
-  let res = '';
   if (typeof localStorage !== 'undefined') {
+    let res = ''
     res = localStorage.getItem("userName");
   }
 
